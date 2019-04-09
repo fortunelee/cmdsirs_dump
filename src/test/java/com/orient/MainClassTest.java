@@ -13,9 +13,6 @@ import org.junit.Test;
 import com.orient.common.ReadConfig;
 import com.orient.dump.TransDumper;
 
-/**
- * @author wblipeng1
- */
 public class MainClassTest {
 
 
