@@ -1,6 +1,10 @@
 package com.orient.message;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class CMDSDepthDouble extends AbstractHandler{
 
@@ -50,56 +54,80 @@ public class CMDSDepthDouble extends AbstractHandler{
         }
         if(!depthDto.getAsk().isEmpty()){
             for(int i = 0; i < depthDto.getAsk().size();i++){
-                setAskParams(i,depthDto.getAsk().get(i).getPx(),depthDto.getAsk().get(i).getQty(),cmdsDepthDouble);
+                //setAskParams(i,depthDto.getAsk().get(i).getPx(),depthDto.getAsk().get(i).getQty(),cmdsDepthDouble);
             }
         }
         return cmdsDepthDouble;
     }
 
     private void setAskParams(int i, String px, String qty, CMDSDepthDouble cmdsDepthDouble) {
-        if(Integer.parseInt(BigDecimal.ZERO.toString()) == i){
-            cmdsDepthDouble.setAskPrice1(px);
-            cmdsDepthDouble.setAskVolume1(qty);
+
+        switch (i){
+
+            case 0:{
+                cmdsDepthDouble.setAskPrice1(px);
+                cmdsDepthDouble.setAskVolume1(qty);
+                break;
+            }
+            case 1:{
+                cmdsDepthDouble.setAskPrice2(px);
+                cmdsDepthDouble.setAskVolume2(qty);
+                break;
+            }
+            case 3:{
+                cmdsDepthDouble.setAskPrice3(px);
+                cmdsDepthDouble.setAskVolume3(qty);
+                break;
+            }
+            case 4:{
+                cmdsDepthDouble.setAskPrice4(px);
+                cmdsDepthDouble.setAskVolume4(qty);
+                break;
+            }
+            case 5:{
+                cmdsDepthDouble.setAskPrice5(px);
+                cmdsDepthDouble.setAskVolume5(qty);
+                break;
+            }
+            default:{
+
+            }
         }
-        if(Integer.parseInt(BigDecimal.ONE.toString()) == i){
-            cmdsDepthDouble.setAskPrice2(px);
-            cmdsDepthDouble.setAskVolume2(qty);
-        }
-        if(Integer.parseInt(new BigDecimal(2).toString()) == i){
-            cmdsDepthDouble.setAskPrice3(px);
-            cmdsDepthDouble.setAskVolume3(qty);
-        }
-        if(Integer.parseInt(new BigDecimal(3).toString()) == i){
-            cmdsDepthDouble.setAskPrice4(px);
-            cmdsDepthDouble.setAskVolume4(qty);
-        }
-        if(Integer.parseInt(new BigDecimal(4).toString()) == i){
-            cmdsDepthDouble.setAskPrice5(px);
-            cmdsDepthDouble.setAskVolume5(qty);
-        }
+
     }
 
     private void setBidParams(int i, String px, String qty, CMDSDepthDouble cmdsDepthDouble) {
 
-        if(Integer.parseInt(BigDecimal.ZERO.toString()) == i){
-            cmdsDepthDouble.setBidPrice1(px);
-            cmdsDepthDouble.setBidVolume1(qty);
-        }
-        if(Integer.parseInt(BigDecimal.ONE.toString()) == i){
-            cmdsDepthDouble.setBidPrice2(px);
-            cmdsDepthDouble.setBidVolume2(qty);
-        }
-        if(Integer.parseInt(new BigDecimal(2).toString()) == i){
-            cmdsDepthDouble.setBidPrice3(px);
-            cmdsDepthDouble.setBidVolume3(qty);
-        }
-        if(Integer.parseInt(new BigDecimal(3).toString()) == i){
-            cmdsDepthDouble.setBidPrice4(px);
-            cmdsDepthDouble.setBidVolume4(qty);
-        }
-        if(Integer.parseInt(new BigDecimal(4).toString()) == i){
-            cmdsDepthDouble.setBidPrice5(px);
-            cmdsDepthDouble.setBidVolume5(qty);
+        switch (i) {
+
+            case 0:{
+                cmdsDepthDouble.setBidPrice1(px);
+                cmdsDepthDouble.setBidVolume1(qty);
+                break;
+            }
+            case 1:{
+                cmdsDepthDouble.setBidPrice2(px);
+                cmdsDepthDouble.setBidVolume2(qty);
+                break;
+            }
+            case 2:{
+                cmdsDepthDouble.setBidPrice3(px);
+                cmdsDepthDouble.setBidVolume3(qty);
+                break;
+            }
+            case 3:{
+                cmdsDepthDouble.setBidPrice4(px);
+                cmdsDepthDouble.setBidVolume4(qty);
+                break;
+            }
+            case 4:{
+                cmdsDepthDouble.setBidPrice5(px);
+                cmdsDepthDouble.setBidVolume5(qty);
+                break;
+            }
+            default:{
+
+            }
         }
     }
 
@@ -348,4 +376,54 @@ public class CMDSDepthDouble extends AbstractHandler{
                 '}';
     }
 
+    public static void main(String[] args) {
+
+
+        MsgType msgType = new MsgType("MDI","{\n" +
+                "\"securityID\": \"FR007_5Y\",\n" +
+                "\"symbol\": \"\",\n" +
+                "\"time\": \"2019-04-01 16:52:18.631\",\n" +
+                "\"bid\": [{\n" +
+                "\t\"px\": 3.0200,\n" +
+                "\t\"qty\": 80000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0175,\n" +
+                "\t\"qty\": 100000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0150,\n" +
+                "\t\"qty\": 100000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0125,\n" +
+                "\t\"qty\": 20000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0100,\n" +
+                "\t\"qty\": 220000000.0000\n" +
+                "}],\n" +
+                "\"ask\": [{\n" +
+                "\t\"px\": 3.0225,\n" +
+                "\t\"qty\": 40000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0250,\n" +
+                "\t\"qty\": 140000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0300,\n" +
+                "\t\"qty\": 40000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0325,\n" +
+                "\t\"qty\": 60000000.0000\n" +
+                "}, {\n" +
+                "\t\"px\": 3.0500,\n" +
+                "\t\"qty\": 20000000.0000\n" +
+                "}]\n" +
+                "}");
+
+        DepthDto depthDto = (DepthDto) JSON.parseObject(msgType.getMsg(),new TypeReference<DepthDto>(){});
+
+
+        new CMDSDepthDouble().getCmdsDepthDouble(depthDto);
+
+
+    }
+
 }
+

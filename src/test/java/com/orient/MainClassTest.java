@@ -40,6 +40,7 @@ public class MainClassTest {
 
 
         @Test
+
         public void transTest(){
 
             msgType = new MsgType("TSI"," {\n" +
