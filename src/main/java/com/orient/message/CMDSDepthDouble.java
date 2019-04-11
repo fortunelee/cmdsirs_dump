@@ -54,7 +54,7 @@ public class CMDSDepthDouble extends AbstractHandler{
         }
         if(!depthDto.getAsk().isEmpty()){
             for(int i = 0; i < depthDto.getAsk().size();i++){
-                //setAskParams(i,depthDto.getAsk().get(i).getPx(),depthDto.getAsk().get(i).getQty(),cmdsDepthDouble);
+                setAskParams(i,depthDto.getAsk().get(i).getPx(),depthDto.getAsk().get(i).getQty(),cmdsDepthDouble);
             }
         }
         return cmdsDepthDouble;
