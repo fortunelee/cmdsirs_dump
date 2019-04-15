@@ -114,7 +114,7 @@ public class TransDumper extends Thread {
 
 		try {
 
-			if (msg.getMsg().equals("") && null == msg){
+			if (null == msg || msg.getMsg().equals("")){
 
 				logger.info("'"+TransDumper.class.getSimpleName()+"'",new RuntimeException("processDump method params is null"));
 				return false;
@@ -187,7 +187,7 @@ public class TransDumper extends Thread {
 	private AbstractHandler getDepthSource(IRSQuoteCommand irsQuoteCommand) {
 
 
-			if (null == irsQuoteCommand && " " == irsQuoteCommand.toJsonString()) {
+			if (null == irsQuoteCommand || " " == irsQuoteCommand.toJsonString()) {
 
 				logger.info("'"+TransDumper.class.getSimpleName()+"'",new RuntimeException("getDepthSource method params is null"));
 			} else {
